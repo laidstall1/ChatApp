@@ -9,9 +9,9 @@ import UIKit
 
 class CustomButton: UIButton {
     
-    init(type: ButtonType, buttonTitle: String) {
+    init(type: ButtonType, title: String) {
         super.init(frame: .zero)
-        setTitle(buttonTitle, for: .normal)
+        setTitle(title, for: .normal)
         titleLabel?.font = UIFont.boldSystemFont(ofSize: 20 )
         setTitleColor(.white, for: .normal)
         backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)

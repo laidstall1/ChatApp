@@ -34,6 +34,20 @@ class SignUpController: UIViewController {
     
     private let passwordTextField: CustomTextField = CustomTextField(placeholder: "Password")
     
+    private let signUpButton: CustomButton = {
+        let btn = CustomButton(type: .system, title: "Sign Up")
+        btn.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+        return btn
+    }()
+    
+    private let dontHaveAcctBtn: UIButton = {
+        let btn = UIButton(type: .system)
+        let attributedText = NSMutableAttributedString(string: "Already  have an account?  ", attributes: [.font: UIFont.systemFont(ofSize: 16), .foregroundColor: UIColor.white])
+        attributedText.append(NSAttributedString(string: "Log In", attributes: [.font: UIFont.systemFont(ofSize: 16), .foregroundColor: UIColor.white]))
+        btn.setAttributedTitle(attributedText, for: .normal)
+        btn.addTarget(self, action: #selector(handleShowLogin), for: .touchUpInside)
+        return btn
+    }()
     
     
     // MARK: - Lifecycle
@@ -48,6 +62,10 @@ class SignUpController: UIViewController {
     @objc func handleSelectPhoto() {
          
     }
+    
+    @objc func handleShowLogin() {
+        navigationController?.popToRootViewController(animated: true)
+    }
     // MARK: - Helpers
     
     func configureUI(){
@@ -58,11 +76,15 @@ class SignUpController: UIViewController {
         uploadPhotoButton.centerX(inView: view)
         uploadPhotoButton.anchor(top: view.safeAreaLayoutGuide.topAnchor)
         
-        let stack = UIStackView(arrangedSubviews: [emailContainerView, fullNameContainerView, usernameContainerView, passwordContainerView])
+        let stack = UIStackView(arrangedSubviews: [emailContainerView, fullNameContainerView, usernameContainerView, passwordContainerView, signUpButton])
         stack.axis = .vertical
         stack.spacing = 20
         
         view.addSubview(stack)
         stack.anchor(top: uploadPhotoButton.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 32, paddingLeft: 32, paddingRight: 32)
+        
+        view.addSubview(dontHaveAcctBtn)
+        dontHaveAcctBtn.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor, paddingBottom: 0)
+        dontHaveAcctBtn.centerX(inView: view)
     }
 }

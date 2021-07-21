@@ -44,6 +44,7 @@ class LoginController: UIViewController {
         btn.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
         btn.layer.cornerRadius = 5
         btn.setHeight(height: 50)
+        btn.addTarget(self, action: #selector(loginTapped), for: .touchUpInside)
         return btn
     }()
 
@@ -65,6 +66,9 @@ class LoginController: UIViewController {
     }
     
     // MARK: - Selectors
+    
+    @objc func loginTapped() {
+    }
     
     @objc func handleShowSignUp() {
         let vc = SignUpController()
