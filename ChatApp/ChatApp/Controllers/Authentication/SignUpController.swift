@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 protocol AuthenticationControllerProtocol {
     func checkFormStatus()
@@ -14,6 +15,7 @@ protocol AuthenticationControllerProtocol {
 class SignUpController: UIViewController {
     
     private var viewModel = SignUpViewModel()
+    private var profileImage: UIImage?
     
     // MARK: - Properties
     private let uploadPhotoButton: UIButton  = {
@@ -88,7 +90,41 @@ class SignUpController: UIViewController {
     }
     
     @objc func handleSignUp() {
+        guard let email = emailTextfield.text, !email.isEmpty else { return }
+        guard let password = passwordTextField.text, !password.isEmpty else { return }
+        guard let username = usernameTextField.text?.lowercased(), !username.isEmpty else { return }
+        guard let fullName = emailTextfield.text, !fullName.isEmpty else { return }
+        guard let profileImage = profileImage else { return }
         
+        guard let imageData = profileImage.jpegData(compressionQuality: 0.3) else { return }
+        
+        let filename = NSUUID().uuidString
+        let ref = Storage.storage().reference(withPath: "/profile_images/\(filename)")
+        
+        ref.putData(imageData, metadata: nil) { (meta, error) in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            ref.downloadURL { (url, error) in
+                guard let profileImageUrl = url?.absoluteString else { return }
+                
+                Auth.auth().createUser(withEmail: email, password: password) { result, error in
+                    if let error = error {
+                        print(error.localizedDescription)
+                        return
+                    }
+                    
+                    guard let uid = result?.user.uid else { return }
+                    
+                    let data = [ "email" : email,
+                                 "fullName" : fullName,
+                                 "profileImageUrl" : profileImageUrl,
+                                 "uid" : uid,
+                                 "username" : username ]
+                }
+            }
+        }
     }
     
     @objc func textDidChange(_ sender: UITextField) {
@@ -147,6 +183,7 @@ class SignUpController: UIViewController {
 extension SignUpController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[.originalImage] as? UIImage
+        profileImage = image
         uploadPhotoButton.setImage(image?.withRenderingMode(.alwaysOriginal), for: .normal)
         uploadPhotoButton.layer.borderWidth = 3.0
         uploadPhotoButton.layer.borderColor = UIColor(white: 1, alpha: 0.7).cgColor
