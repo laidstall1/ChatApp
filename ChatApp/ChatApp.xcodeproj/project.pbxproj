@@ -15,11 +15,12 @@
 		048151F0269D460600EBFF50 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048151EF269D460600EBFF50 /* LoginController.swift */; };
 		048151F2269D461600EBFF50 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048151F1269D461600EBFF50 /* SignUpController.swift */; };
 		048151F4269D4BDE00EBFF50 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048151F3269D4BDE00EBFF50 /* Extensions.swift */; };
-		04D5EDDA26A729F200BA92C9 /* LoginViewControllerClone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D5EDD926A729F200BA92C9 /* LoginViewControllerClone.swift */; };
 		04D5EDDC26A74AD500BA92C9 /* InputContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D5EDDB26A74AD500BA92C9 /* InputContainerView.swift */; };
 		04D5EDDE26A7548D00BA92C9 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D5EDDD26A7548D00BA92C9 /* CustomTextField.swift */; };
 		04D5EDE026A7C8D100BA92C9 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D5EDDF26A7C8D100BA92C9 /* CustomButton.swift */; };
 		04D5EDE226A7D81000BA92C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04D5EDE126A7D81000BA92C9 /* Assets.xcassets */; };
+		04D5EE0626A7EC4900BA92C9 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D5EE0526A7EC4900BA92C9 /* LoginViewModel.swift */; };
+		04D5EE0826A8014100BA92C9 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D5EE0726A8014100BA92C9 /* SignUpViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,11 +34,13 @@
 		048151EF269D460600EBFF50 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		048151F1269D461600EBFF50 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		048151F3269D4BDE00EBFF50 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		04D5EDD926A729F200BA92C9 /* LoginViewControllerClone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerClone.swift; sourceTree = "<group>"; };
 		04D5EDDB26A74AD500BA92C9 /* InputContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputContainerView.swift; sourceTree = "<group>"; };
 		04D5EDDD26A7548D00BA92C9 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		04D5EDDF26A7C8D100BA92C9 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		04D5EDE126A7D81000BA92C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "../../../../../Downloads/ChatApp/iOS 13 & Swift 5- Chat App With Firestore - MVVM/1. Introduction/Assets.xcassets"; sourceTree = "<group>"; };
+		04D5EE0526A7EC4900BA92C9 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		04D5EE0726A8014100BA92C9 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		04D5EE0926A823CA00BA92C9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "/Users/mac/Documents/GitHub/ChatApp/ChatApp/ChatApp/GoogleService-Info.plist"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +82,7 @@
 				04D5EDE326A7D85000BA92C9 /* Delegates */,
 				04D5EDE426A7D86B00BA92C9 /* Storyboards */,
 				04D5EDE126A7D81000BA92C9 /* Assets.xcassets */,
+				04D5EE0926A823CA00BA92C9 /* GoogleService-Info.plist */,
 				048151DE269D357400EBFF50 /* Info.plist */,
 			);
 			path = ChatApp;
@@ -102,7 +106,8 @@
 		048151E8269D361800EBFF50 /* View Model */ = {
 			isa = PBXGroup;
 			children = (
-				04D5EDD926A729F200BA92C9 /* LoginViewControllerClone.swift */,
+				04D5EE0526A7EC4900BA92C9 /* LoginViewModel.swift */,
+				04D5EE0726A8014100BA92C9 /* SignUpViewModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -232,13 +237,14 @@
 			files = (
 				04D5EDDE26A7548D00BA92C9 /* CustomTextField.swift in Sources */,
 				048151D1269D357100EBFF50 /* AppDelegate.swift in Sources */,
-				04D5EDDA26A729F200BA92C9 /* LoginViewControllerClone.swift in Sources */,
 				048151ED269D36A100EBFF50 /* ConversationViewController.swift in Sources */,
 				04D5EDDC26A74AD500BA92C9 /* InputContainerView.swift in Sources */,
 				048151D3269D357100EBFF50 /* SceneDelegate.swift in Sources */,
 				04D5EDE026A7C8D100BA92C9 /* CustomButton.swift in Sources */,
 				048151F0269D460600EBFF50 /* LoginController.swift in Sources */,
 				048151F2269D461600EBFF50 /* SignUpController.swift in Sources */,
+				04D5EE0626A7EC4900BA92C9 /* LoginViewModel.swift in Sources */,
+				04D5EE0826A8014100BA92C9 /* SignUpViewModel.swift in Sources */,
 				048151F4269D4BDE00EBFF50 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

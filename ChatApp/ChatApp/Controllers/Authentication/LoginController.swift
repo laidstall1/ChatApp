@@ -9,6 +9,8 @@ import UIKit
 
 class LoginController: UIViewController {
     
+    private var viewModel = LoginViewModel()
+    
     // MARK: - Properties
     
     private let iconImage: UIImageView = {
@@ -43,7 +45,9 @@ class LoginController: UIViewController {
         btn.setTitleColor(.white, for: .normal)
         btn.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
         btn.layer.cornerRadius = 5
+        btn.isEnabled = false
         btn.setHeight(height: 50)
+        btn.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
         return btn
     }()
 
@@ -66,13 +70,26 @@ class LoginController: UIViewController {
     
     // MARK: - Selectors
     
+    @objc func handleLogin() {
+        print("warris going on")
+    }
+    
+    @objc func textDidChange(_ sender: UITextField) {
+        if sender == emailTextfield {
+            viewModel.email = sender.text
+        } else {
+            viewModel.password = sender.text
+        }
+        checkFormStatus()
+    }
+    
     @objc func handleShowSignUp() {
         let vc = SignUpController()
         navigationController?.pushViewController(vc, animated: true)
     }
     
     // MARK: - Helpers
-    
+   
     func configureUI() {
         navigationController?.navigationBar.isHidden = true
         navigationController?.navigationBar.barStyle = .black
@@ -98,5 +115,21 @@ class LoginController: UIViewController {
         dontHaveAcctBtn.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor, paddingBottom: 0)
         dontHaveAcctBtn.centerX(inView: view)
         
+        emailTextfield.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        passwordTextfield.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        
+    }
+}
+
+extension LoginController: AuthenticationControllerProtocol {
+    func checkFormStatus() {
+        switch viewModel.formIsValid {
+        case true:
+            loginBtn.isEnabled = true
+            loginBtn.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+        case false:
+            loginBtn.isEnabled = false
+            loginBtn.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
+        }
     }
 }
