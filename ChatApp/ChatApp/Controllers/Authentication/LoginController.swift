@@ -73,15 +73,13 @@ class LoginController: UIViewController {
     @objc func handleLogin() {
         guard let email = emailTextfield.text else { return }
         guard let password = passwordTextfield.text else { return }
-        Auth.auth().signIn(withEmail: email, password: password, completion: { result, error in
+        AuthService.shared.logUserIn(withEmail: email, password) { result, error in
             if let error = error {
-                print("DEBUG: failed to log in with error: \(error.localizedDescription)")
+                print("DEBUG: failed to login with error: \(error.localizedDescription)")
                 return
             }
-            debugPrint("DEBUG: User login successful...")
             self.dismiss(animated: true, completion: nil)
-        })
-        
+        }
     }
     
     @objc func textDidChange(_ sender: UITextField) {
