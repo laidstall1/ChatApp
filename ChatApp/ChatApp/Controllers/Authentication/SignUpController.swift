@@ -126,12 +126,14 @@ class SignUpController: UIViewController {
                                  "uid" : uid,
                                  "username" : username ] as [String : Any]
                     
+                    // upload document data
                     Firestore.firestore().collection("users").document(uid).setData(data) { error in
                         if let error = error {
                             print("DEBUG: failed to upload user data with error: \(error.localizedDescription)")
                             return
                         }
                         print("DEBUG: Did create user...")
+                        self.dismiss(animated: true, completion: nil)
                     }
                 }
             }

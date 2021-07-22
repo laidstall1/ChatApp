@@ -4,7 +4,7 @@
 //
 //  Created by mac on 13/07/2021.
 //
-
+import Firebase
 import UIKit
 
 class LoginController: UIViewController {
@@ -71,7 +71,17 @@ class LoginController: UIViewController {
     // MARK: - Selectors
     
     @objc func handleLogin() {
-        print("warris going on")
+        guard let email = emailTextfield.text else { return }
+        guard let password = passwordTextfield.text else { return }
+        Auth.auth().signIn(withEmail: email, password: password, completion: { result, error in
+            if let error = error {
+                print("DEBUG: failed to log in with error: \(error.localizedDescription)")
+                return
+            }
+            debugPrint("DEBUG: User login successful...")
+            self.dismiss(animated: true, completion: nil)
+        })
+        
     }
     
     @objc func textDidChange(_ sender: UITextField) {
@@ -89,7 +99,7 @@ class LoginController: UIViewController {
     }
     
     // MARK: - Helpers
-   
+    
     func configureUI() {
         navigationController?.navigationBar.isHidden = true
         navigationController?.navigationBar.barStyle = .black
