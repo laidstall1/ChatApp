@@ -40,8 +40,8 @@ class LoginController: UIViewController {
     
     private let loginBtn: UIButton = {
         let btn = UIButton(type: .system)
-        btn.setTitle("Login", for: .normal)
-        btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20 )
+        btn.setTitle("Log In", for: .normal)
+        btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18 )
         btn.setTitleColor(.white, for: .normal)
         btn.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
         btn.layer.cornerRadius = 5

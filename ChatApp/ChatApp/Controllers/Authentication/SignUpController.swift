@@ -18,11 +18,13 @@ class SignUpController: UIViewController {
     private var profileImage: UIImage?
     
     // MARK: - Properties
+    
     private let uploadPhotoButton: UIButton  = {
         let uploadBtn = UIButton(type: .system)
         uploadBtn.setImage(UIImage(named: "plus_photo"), for: .normal)
         uploadBtn.tintColor = .white
         uploadBtn.clipsToBounds = true
+        uploadBtn.imageView?.contentMode = .scaleAspectFill
         uploadBtn.addTarget(self, action: #selector(handleSelectPhoto), for: .touchUpInside)
         return uploadBtn
     }()
@@ -41,20 +43,16 @@ class SignUpController: UIViewController {
     
     private lazy var passwordContainerView: InputContainerView = InputContainerView(textfield: passwordTextField, image: #imageLiteral(resourceName: "ic_lock_outline_white_2x"))
     
-    private let passwordTextField: CustomTextField = CustomTextField(placeholder: "Password")
-    
-//    private let signUpButton: CustomButton = {
-//        let btn = CustomButton(type: .system, title: "Sign Up")
-//        btn.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
-//        btn.isEnabled = false
-//        btn.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
-//        return btn
-//    }()
+    private let passwordTextField: CustomTextField = {
+        let tf = CustomTextField(placeholder: "Password")
+        tf.isSecureTextEntry = true
+        return tf
+    }()
     
     private let signUpButton: UIButton = {
         let btn = UIButton(type: .system)
         btn.setTitle("Sign Up", for: .normal)
-        btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20 )
+        btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18 )
         btn.setTitleColor(.white, for: .normal)
         btn.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
         btn.layer.cornerRadius = 5
@@ -86,6 +84,7 @@ class SignUpController: UIViewController {
     @objc func handleSelectPhoto() {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
+        imagePickerController.allowsEditing = true
         present(imagePickerController, animated: true)
     }
     
@@ -93,7 +92,7 @@ class SignUpController: UIViewController {
         guard let email = emailTextfield.text, !email.isEmpty else { return }
         guard let password = passwordTextField.text, !password.isEmpty else { return }
         guard let username = usernameTextField.text?.lowercased(), !username.isEmpty else { return }
-        guard let fullName = emailTextfield.text, !fullName.isEmpty else { return }
+        guard let fullName = fullNameTextfield.text, !fullName.isEmpty else { return }
         guard let profileImage = profileImage else { return }
         
         guard let imageData = profileImage.jpegData(compressionQuality: 0.3) else { return }
@@ -101,27 +100,39 @@ class SignUpController: UIViewController {
         let filename = NSUUID().uuidString
         let ref = Storage.storage().reference(withPath: "/profile_images/\(filename)")
         
+        // upload image file from disk
         ref.putData(imageData, metadata: nil) { (meta, error) in
             if let error = error {
-                print(error.localizedDescription)
+                print("DEBUG: failed to upload image with error: \(error.localizedDescription)")
                 return
             }
+            // download image url
             ref.downloadURL { (url, error) in
                 guard let profileImageUrl = url?.absoluteString else { return }
                 
+                // create new user
                 Auth.auth().createUser(withEmail: email, password: password) { result, error in
                     if let error = error {
-                        print(error.localizedDescription)
+                        print("DEBUG: failed to create user with error: \(error.localizedDescription)")
                         return
                     }
-                    
+                    // unwrap the uid
                     guard let uid = result?.user.uid else { return }
                     
+                    // create a dictionary with the textfields
                     let data = [ "email" : email,
                                  "fullName" : fullName,
                                  "profileImageUrl" : profileImageUrl,
                                  "uid" : uid,
-                                 "username" : username ]
+                                 "username" : username ] as [String : Any]
+                    
+                    Firestore.firestore().collection("users").document(uid).setData(data) { error in
+                        if let error = error {
+                            print("DEBUG: failed to upload user data with error: \(error.localizedDescription)")
+                            return
+                        }
+                        print("DEBUG: Did create user...")
+                    }
                 }
             }
         }
@@ -146,6 +157,7 @@ class SignUpController: UIViewController {
     @objc func handleShowLogin() {
         navigationController?.popToRootViewController(animated: true)
     }
+    
     // MARK: - Helpers
         
     fileprivate func configureNotificationObservers() {
