@@ -15,6 +15,15 @@ class ConversationsController: UIViewController {
     // MARK: - Properties
     private let tableView = UITableView()
     
+    private let newMessageButton: UIButton = {
+        let btn = UIButton(type: .system)
+        btn.setImage(UIImage(systemName: "plus"), for: .normal)
+        btn.backgroundColor = .systemPurple
+        btn.tintColor = .white
+        btn.imageView?.setDimensions(height: 24, width: 24)
+        return btn
+    }()
+    
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +71,9 @@ class ConversationsController: UIViewController {
         configureTableView()
         let navImage = UIImage(systemName: "person.circle.fill")
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: navImage, style: .plain, target: self, action: #selector(showProfile))
+        
+        view.addSubview(newMessageButton)
+        newMessageButton.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingBottom: 16, paddingRight: 24)
     }
     
     func configureTableView(){
