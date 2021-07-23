@@ -11,7 +11,7 @@
 		048151D3269D357100EBFF50 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048151D2269D357100EBFF50 /* SceneDelegate.swift */; };
 		048151D8269D357100EBFF50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 048151D6269D357100EBFF50 /* Main.storyboard */; };
 		048151DD269D357400EBFF50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 048151DB269D357400EBFF50 /* LaunchScreen.storyboard */; };
-		048151ED269D36A100EBFF50 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048151EC269D36A100EBFF50 /* ConversationViewController.swift */; };
+		048151ED269D36A100EBFF50 /* ConversationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048151EC269D36A100EBFF50 /* ConversationsController.swift */; };
 		048151F0269D460600EBFF50 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048151EF269D460600EBFF50 /* LoginController.swift */; };
 		048151F2269D461600EBFF50 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048151F1269D461600EBFF50 /* SignUpController.swift */; };
 		048151F4269D4BDE00EBFF50 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048151F3269D4BDE00EBFF50 /* Extensions.swift */; };
@@ -23,6 +23,7 @@
 		04D5EE0826A8014100BA92C9 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D5EE0726A8014100BA92C9 /* SignUpViewModel.swift */; };
 		04D5EE0D26A8848600BA92C9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04D5EE0C26A8848500BA92C9 /* GoogleService-Info.plist */; };
 		04D5EE0F26A8FF7000BA92C9 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D5EE0E26A8FF6F00BA92C9 /* AuthService.swift */; };
+		04D5EE1126AAC36800BA92C9 /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D5EE1026AAC36800BA92C9 /* NewMessageController.swift */; };
 		18D3E2CCB36EA50867B2BE64 /* Pods_ChatApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BF11937AA315E6496719519 /* Pods_ChatApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,7 +34,7 @@
 		048151D7269D357100EBFF50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		048151DC269D357400EBFF50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		048151DE269D357400EBFF50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		048151EC269D36A100EBFF50 /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
+		048151EC269D36A100EBFF50 /* ConversationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsController.swift; sourceTree = "<group>"; };
 		048151EF269D460600EBFF50 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		048151F1269D461600EBFF50 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		048151F3269D4BDE00EBFF50 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -45,6 +46,7 @@
 		04D5EE0726A8014100BA92C9 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		04D5EE0C26A8848500BA92C9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		04D5EE0E26A8FF6F00BA92C9 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		04D5EE1026AAC36800BA92C9 /* NewMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
 		2BF11937AA315E6496719519 /* Pods_ChatApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChatApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		46EEE9B496DB7C857FCA7376 /* Pods-ChatApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatApp.release.xcconfig"; path = "Target Support Files/Pods-ChatApp/Pods-ChatApp.release.xcconfig"; sourceTree = "<group>"; };
 		D8CDEC75AF59303F728E54DF /* Pods-ChatApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatApp.debug.xcconfig"; path = "Target Support Files/Pods-ChatApp/Pods-ChatApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -144,7 +146,8 @@
 			isa = PBXGroup;
 			children = (
 				048151EE269D45E600EBFF50 /* Authentication */,
-				048151EC269D36A100EBFF50 /* ConversationViewController.swift */,
+				048151EC269D36A100EBFF50 /* ConversationsController.swift */,
+				04D5EE1026AAC36800BA92C9 /* NewMessageController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -310,7 +313,7 @@
 			files = (
 				04D5EDDE26A7548D00BA92C9 /* CustomTextField.swift in Sources */,
 				048151D1269D357100EBFF50 /* AppDelegate.swift in Sources */,
-				048151ED269D36A100EBFF50 /* ConversationViewController.swift in Sources */,
+				048151ED269D36A100EBFF50 /* ConversationsController.swift in Sources */,
 				04D5EE0F26A8FF7000BA92C9 /* AuthService.swift in Sources */,
 				04D5EDDC26A74AD500BA92C9 /* InputContainerView.swift in Sources */,
 				048151D3269D357100EBFF50 /* SceneDelegate.swift in Sources */,
@@ -320,6 +323,7 @@
 				04D5EE0626A7EC4900BA92C9 /* LoginViewModel.swift in Sources */,
 				04D5EE0826A8014100BA92C9 /* SignUpViewModel.swift in Sources */,
 				048151F4269D4BDE00EBFF50 /* Extensions.swift in Sources */,
+				04D5EE1126AAC36800BA92C9 /* NewMessageController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,10 +21,12 @@ class ConversationsController: UIViewController {
         btn.backgroundColor = .systemPurple
         btn.tintColor = .white
         btn.imageView?.setDimensions(height: 24, width: 24)
+        btn.addTarget(self, action: #selector(showNewMessage), for: .touchUpInside)
         return btn
     }()
     
     // MARK: - LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
@@ -32,10 +34,14 @@ class ConversationsController: UIViewController {
     }
     
     // MARK: - Selectors
+    
     @objc func showProfile(){
         logout()
     }
     
+    @objc func showNewMessage() {
+        
+    }
     // MARK: - API
     
     func authenticateUser() {
@@ -73,7 +79,9 @@ class ConversationsController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: navImage, style: .plain, target: self, action: #selector(showProfile))
         
         view.addSubview(newMessageButton)
+        newMessageButton.setDimensions(height: 56, width: 56)
         newMessageButton.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingBottom: 16, paddingRight: 24)
+        newMessageButton.layer.cornerRadius = 56 / 2
     }
     
     func configureTableView(){
@@ -92,7 +100,7 @@ class ConversationsController: UIViewController {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        appearance.backgroundColor = .systemPink
+        appearance.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
         
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.compactAppearance = appearance
