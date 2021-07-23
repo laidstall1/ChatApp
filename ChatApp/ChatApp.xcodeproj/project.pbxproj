@@ -24,6 +24,10 @@
 		04D5EE0D26A8848600BA92C9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04D5EE0C26A8848500BA92C9 /* GoogleService-Info.plist */; };
 		04D5EE0F26A8FF7000BA92C9 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D5EE0E26A8FF6F00BA92C9 /* AuthService.swift */; };
 		04D5EE1126AAC36800BA92C9 /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D5EE1026AAC36800BA92C9 /* NewMessageController.swift */; };
+		04D5EE1326AAD5CB00BA92C9 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D5EE1226AAD5CB00BA92C9 /* UserCell.swift */; };
+		04D5EE1526AB05FA00BA92C9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D5EE1426AB05FA00BA92C9 /* User.swift */; };
+		04D5EE1726AB073B00BA92C9 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D5EE1626AB073B00BA92C9 /* Service.swift */; };
+		04D5EE1926AB376C00BA92C9 /* NewMessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D5EE1826AB376C00BA92C9 /* NewMessageViewModel.swift */; };
 		18D3E2CCB36EA50867B2BE64 /* Pods_ChatApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BF11937AA315E6496719519 /* Pods_ChatApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +51,10 @@
 		04D5EE0C26A8848500BA92C9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		04D5EE0E26A8FF6F00BA92C9 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		04D5EE1026AAC36800BA92C9 /* NewMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
+		04D5EE1226AAD5CB00BA92C9 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		04D5EE1426AB05FA00BA92C9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		04D5EE1626AB073B00BA92C9 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		04D5EE1826AB376C00BA92C9 /* NewMessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageViewModel.swift; sourceTree = "<group>"; };
 		2BF11937AA315E6496719519 /* Pods_ChatApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChatApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		46EEE9B496DB7C857FCA7376 /* Pods-ChatApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatApp.release.xcconfig"; path = "Target Support Files/Pods-ChatApp/Pods-ChatApp.release.xcconfig"; sourceTree = "<group>"; };
 		D8CDEC75AF59303F728E54DF /* Pods-ChatApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatApp.debug.xcconfig"; path = "Target Support Files/Pods-ChatApp/Pods-ChatApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -86,9 +94,9 @@
 			isa = PBXGroup;
 			children = (
 				048151EB269D367800EBFF50 /* Controllers */,
+				048151E8269D361800EBFF50 /* View Model */,
 				048151EA269D361C00EBFF50 /* Model */,
 				048151E9269D361B00EBFF50 /* View */,
-				048151E8269D361800EBFF50 /* View Model */,
 				048151E7269D361300EBFF50 /* API */,
 				048151E4269D360A00EBFF50 /* Utils */,
 				04D5EDE326A7D85000BA92C9 /* Delegates */,
@@ -112,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				04D5EE0E26A8FF6F00BA92C9 /* AuthService.swift */,
+				04D5EE1626AB073B00BA92C9 /* Service.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -119,6 +128,7 @@
 		048151E8269D361800EBFF50 /* View Model */ = {
 			isa = PBXGroup;
 			children = (
+				04D5EE1826AB376C00BA92C9 /* NewMessageViewModel.swift */,
 				04D5EE0526A7EC4900BA92C9 /* LoginViewModel.swift */,
 				04D5EE0726A8014100BA92C9 /* SignUpViewModel.swift */,
 			);
@@ -130,6 +140,7 @@
 			children = (
 				04D5EDDB26A74AD500BA92C9 /* InputContainerView.swift */,
 				04D5EDDF26A7C8D100BA92C9 /* CustomButton.swift */,
+				04D5EE1226AAD5CB00BA92C9 /* UserCell.swift */,
 				04D5EDDD26A7548D00BA92C9 /* CustomTextField.swift */,
 			);
 			path = View;
@@ -138,6 +149,7 @@
 		048151EA269D361C00EBFF50 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				04D5EE1426AB05FA00BA92C9 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -317,7 +329,11 @@
 				04D5EE0F26A8FF7000BA92C9 /* AuthService.swift in Sources */,
 				04D5EDDC26A74AD500BA92C9 /* InputContainerView.swift in Sources */,
 				048151D3269D357100EBFF50 /* SceneDelegate.swift in Sources */,
+				04D5EE1926AB376C00BA92C9 /* NewMessageViewModel.swift in Sources */,
+				04D5EE1326AAD5CB00BA92C9 /* UserCell.swift in Sources */,
 				04D5EDE026A7C8D100BA92C9 /* CustomButton.swift in Sources */,
+				04D5EE1526AB05FA00BA92C9 /* User.swift in Sources */,
+				04D5EE1726AB073B00BA92C9 /* Service.swift in Sources */,
 				048151F0269D460600EBFF50 /* LoginController.swift in Sources */,
 				048151F2269D461600EBFF50 /* SignUpController.swift in Sources */,
 				04D5EE0626A7EC4900BA92C9 /* LoginViewModel.swift in Sources */,
