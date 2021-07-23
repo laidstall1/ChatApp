@@ -81,6 +81,18 @@ class SignUpController: UIViewController {
 
     // MARK: - Selectors
     
+    @objc func keyboardWillShow() {
+        if view.frame.origin.y == 0 {
+            view.frame.origin.y -= 88
+        }
+    }
+    
+    @objc func keyboardWillHide() {
+        if view.frame.origin.y != 0 {
+            view.frame.origin.y = 0
+        }
+    }
+    
     @objc func handleSelectPhoto() {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
@@ -98,11 +110,16 @@ class SignUpController: UIViewController {
         let credentials = RegistrationCredentials(email: email, password: password,
                                                   fullName: fullName, username: username,
                                                   profileImage: profileImage)
+        
+        showLoader(true, withText: "Signing you up")
+        
         AuthService.shared.createUser(with: credentials) { error in
             if let error = error {
                 print("DEBUG: Failed to upload user data with \(error.localizedDescription)")
+                self.showLoader(false)
                 return
             }
+            self.showLoader(false)
             self.dismiss(animated: true, completion: nil)
         }
     }
@@ -134,6 +151,9 @@ class SignUpController: UIViewController {
         fullNameTextfield.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
         usernameTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     func configureUI(){
