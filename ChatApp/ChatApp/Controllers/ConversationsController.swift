@@ -40,7 +40,10 @@ class ConversationsController: UIViewController {
     }
     
     @objc func showNewMessage() {
-        
+        let vc = NewMessageController()
+        let nav = UINavigationController(rootViewController: vc)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true, completion: nil)
     }
     // MARK: - API
     
@@ -73,7 +76,7 @@ class ConversationsController: UIViewController {
     
     func configureUI(){
         view.backgroundColor = .white
-        configureNavBar()
+        configureNavBar(withTitle: "Messages", true)
         configureTableView()
         let navImage = UIImage(systemName: "person.circle.fill")
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: navImage, style: .plain, target: self, action: #selector(showProfile))
@@ -95,26 +98,9 @@ class ConversationsController: UIViewController {
         view.addSubview(tableView)
         tableView.frame = view.frame
     }
-    
-    func configureNavBar(){
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        appearance.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
-        
-        navigationController?.navigationBar.standardAppearance = appearance
-        navigationController?.navigationBar.compactAppearance = appearance
-        navigationController?.navigationBar.scrollEdgeAppearance = appearance
-        
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.title = "Messages"
-        
-        navigationController?.navigationBar.tintColor = .white
-        navigationController?.navigationBar.isTranslucent = true
-        
-    }
-   
 }
+
+//  MARK: - UITableViewDataSource
 
 extension ConversationsController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -126,9 +112,9 @@ extension ConversationsController: UITableViewDataSource {
         cell.textLabel?.text = "Testing"
         return cell
     }
-    
-    
 }
+
+//  MARK: - UITableViewDelegate
 
 extension ConversationsController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
