@@ -26,8 +26,9 @@
 		04D5EE1126AAC36800BA92C9 /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D5EE1026AAC36800BA92C9 /* NewMessageController.swift */; };
 		04D5EE1326AAD5CB00BA92C9 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D5EE1226AAD5CB00BA92C9 /* UserCell.swift */; };
 		04D5EE1526AB05FA00BA92C9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D5EE1426AB05FA00BA92C9 /* User.swift */; };
-		04D5EE1726AB073B00BA92C9 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D5EE1626AB073B00BA92C9 /* Service.swift */; };
 		04D5EE1926AB376C00BA92C9 /* NewMessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D5EE1826AB376C00BA92C9 /* NewMessageViewModel.swift */; };
+		04D5EE1B26AC0E3C00BA92C9 /* ChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D5EE1A26AC0E3C00BA92C9 /* ChatController.swift */; };
+		04D5EE4B26AE7D6E00BA92C9 /* CustomInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D5EE4A26AE7D6D00BA92C9 /* CustomInputAccessoryView.swift */; };
 		18D3E2CCB36EA50867B2BE64 /* Pods_ChatApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BF11937AA315E6496719519 /* Pods_ChatApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -53,8 +54,9 @@
 		04D5EE1026AAC36800BA92C9 /* NewMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
 		04D5EE1226AAD5CB00BA92C9 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		04D5EE1426AB05FA00BA92C9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		04D5EE1626AB073B00BA92C9 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		04D5EE1826AB376C00BA92C9 /* NewMessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageViewModel.swift; sourceTree = "<group>"; };
+		04D5EE1A26AC0E3C00BA92C9 /* ChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
+		04D5EE4A26AE7D6D00BA92C9 /* CustomInputAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputAccessoryView.swift; sourceTree = "<group>"; };
 		2BF11937AA315E6496719519 /* Pods_ChatApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChatApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		46EEE9B496DB7C857FCA7376 /* Pods-ChatApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatApp.release.xcconfig"; path = "Target Support Files/Pods-ChatApp/Pods-ChatApp.release.xcconfig"; sourceTree = "<group>"; };
 		D8CDEC75AF59303F728E54DF /* Pods-ChatApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatApp.debug.xcconfig"; path = "Target Support Files/Pods-ChatApp/Pods-ChatApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -120,7 +122,6 @@
 			isa = PBXGroup;
 			children = (
 				04D5EE0E26A8FF6F00BA92C9 /* AuthService.swift */,
-				04D5EE1626AB073B00BA92C9 /* Service.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -140,6 +141,7 @@
 			children = (
 				04D5EDDB26A74AD500BA92C9 /* InputContainerView.swift */,
 				04D5EDDF26A7C8D100BA92C9 /* CustomButton.swift */,
+				04D5EE4A26AE7D6D00BA92C9 /* CustomInputAccessoryView.swift */,
 				04D5EE1226AAD5CB00BA92C9 /* UserCell.swift */,
 				04D5EDDD26A7548D00BA92C9 /* CustomTextField.swift */,
 			);
@@ -160,6 +162,7 @@
 				048151EE269D45E600EBFF50 /* Authentication */,
 				048151EC269D36A100EBFF50 /* ConversationsController.swift */,
 				04D5EE1026AAC36800BA92C9 /* NewMessageController.swift */,
+				04D5EE1A26AC0E3C00BA92C9 /* ChatController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -333,13 +336,14 @@
 				04D5EE1326AAD5CB00BA92C9 /* UserCell.swift in Sources */,
 				04D5EDE026A7C8D100BA92C9 /* CustomButton.swift in Sources */,
 				04D5EE1526AB05FA00BA92C9 /* User.swift in Sources */,
-				04D5EE1726AB073B00BA92C9 /* Service.swift in Sources */,
 				048151F0269D460600EBFF50 /* LoginController.swift in Sources */,
 				048151F2269D461600EBFF50 /* SignUpController.swift in Sources */,
 				04D5EE0626A7EC4900BA92C9 /* LoginViewModel.swift in Sources */,
 				04D5EE0826A8014100BA92C9 /* SignUpViewModel.swift in Sources */,
+				04D5EE1B26AC0E3C00BA92C9 /* ChatController.swift in Sources */,
 				048151F4269D4BDE00EBFF50 /* Extensions.swift in Sources */,
 				04D5EE1126AAC36800BA92C9 /* NewMessageController.swift in Sources */,
+				04D5EE4B26AE7D6E00BA92C9 /* CustomInputAccessoryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,11 +9,16 @@ import UIKit
 
 private let reuseIdentifier = "UserCell"
 
+protocol NewMessageControllerDelegate: AnyObject {
+    func controller(_ controller: NewMessageController, startChatWithUser user: User)
+}
+
 class NewMessageController: UITableViewController {
 
 //    MARK: - Properties
     
     private var viewModel = NewMessageViewModel()
+    weak var newMessageDelegate: NewMessageControllerDelegate?
     
 //    MARK: - Lifecycle
     
@@ -54,12 +59,23 @@ class NewMessageController: UITableViewController {
     }
 }
 
+//  MARK: - UITableViewDatasource
+
 extension NewMessageController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.users.count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! UserCell
+        cell.configure(with: viewModel.users[indexPath.row])
         return cell
+    }
+}
+
+//  MARK: - UITableViewDataSource
+
+extension NewMessageController {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        newMessageDelegate?.controller(self, startChatWithUser: viewModel.users[indexPath.row])
     }
 }

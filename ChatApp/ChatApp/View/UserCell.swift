@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import SDWebImage
+import Foundation
 
 class UserCell: UITableViewCell {
-
-//    MARK: - Properties
+    
+    //    MARK: - Properties
     
     private let profileImageView: UIImageView = {
         let iv = UIImageView()
@@ -34,7 +36,7 @@ class UserCell: UITableViewCell {
         return lbl
     }()
     
-//    MARK: - Lifecycle
+    //    MARK: - Lifecycle
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -55,6 +57,14 @@ class UserCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-   
-//    MARK: - Helpers
+    
+    //    MARK: - Helpers
+    
+    func configure(with model: User) {
+        usernameLabel.text = model.username
+        fullnameLabel.text = model.fullname
+        
+        guard let imageUrl = URL(string: model.profileImageURL) else { return }
+        profileImageView.sd_setImage(with: imageUrl)
+    }
 }
