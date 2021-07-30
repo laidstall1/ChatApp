@@ -125,7 +125,6 @@ extension ConversationsController: UITableViewDelegate {
 
 extension ConversationsController: NewMessageControllerDelegate {
     func controller(_ controller: NewMessageController, startChatWithUser user: User) {
-        debugPrint("DEBUG: user in conversation controller is \(user.username)")
         dismiss(animated: true, completion: nil)
         let chatController = ChatController(user: user)
         navigationController?.pushViewController(chatController, animated: true)

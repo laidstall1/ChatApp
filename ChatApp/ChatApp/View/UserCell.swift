@@ -13,6 +13,12 @@ class UserCell: UITableViewCell {
     
     //    MARK: - Properties
     
+    var user: User? {
+        didSet {
+            configure()
+        }
+    }
+    
     private let profileImageView: UIImageView = {
         let iv = UIImageView()
         iv.backgroundColor = .systemPurple
@@ -60,11 +66,11 @@ class UserCell: UITableViewCell {
     
     //    MARK: - Helpers
     
-    func configure(with model: User) {
-        usernameLabel.text = model.username
-        fullnameLabel.text = model.fullname
+    func configure() {
+        usernameLabel.text = self.user?.username
+        fullnameLabel.text = self.user?.fullname
         
-        guard let imageUrl = URL(string: model.profileImageURL) else { return }
+        guard let imageUrl = URL(string: self.user!.profileImageURL) else { return }
         profileImageView.sd_setImage(with: imageUrl)
     }
 }

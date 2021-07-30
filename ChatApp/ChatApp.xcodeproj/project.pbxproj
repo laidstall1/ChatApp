@@ -15,6 +15,9 @@
 		048151F0269D460600EBFF50 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048151EF269D460600EBFF50 /* LoginController.swift */; };
 		048151F2269D461600EBFF50 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048151F1269D461600EBFF50 /* SignUpController.swift */; };
 		048151F4269D4BDE00EBFF50 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048151F3269D4BDE00EBFF50 /* Extensions.swift */; };
+		04C896F226B408D000E42C5F /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C896F126B408D000E42C5F /* MessageCell.swift */; };
+		04C896F426B4539E00E42C5F /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C896F326B4539E00E42C5F /* Message.swift */; };
+		04C896F626B46DAD00E42C5F /* MessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C896F526B46DAD00E42C5F /* MessageViewModel.swift */; };
 		04D5EDDC26A74AD500BA92C9 /* InputContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D5EDDB26A74AD500BA92C9 /* InputContainerView.swift */; };
 		04D5EDDE26A7548D00BA92C9 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D5EDDD26A7548D00BA92C9 /* CustomTextField.swift */; };
 		04D5EDE026A7C8D100BA92C9 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D5EDDF26A7C8D100BA92C9 /* CustomButton.swift */; };
@@ -43,6 +46,9 @@
 		048151EF269D460600EBFF50 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		048151F1269D461600EBFF50 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		048151F3269D4BDE00EBFF50 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		04C896F126B408D000E42C5F /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		04C896F326B4539E00E42C5F /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		04C896F526B46DAD00E42C5F /* MessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
 		04D5EDDB26A74AD500BA92C9 /* InputContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputContainerView.swift; sourceTree = "<group>"; };
 		04D5EDDD26A7548D00BA92C9 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		04D5EDDF26A7C8D100BA92C9 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -131,6 +137,7 @@
 			children = (
 				04D5EE1826AB376C00BA92C9 /* NewMessageViewModel.swift */,
 				04D5EE0526A7EC4900BA92C9 /* LoginViewModel.swift */,
+				04C896F526B46DAD00E42C5F /* MessageViewModel.swift */,
 				04D5EE0726A8014100BA92C9 /* SignUpViewModel.swift */,
 			);
 			path = "View Model";
@@ -142,6 +149,7 @@
 				04D5EDDB26A74AD500BA92C9 /* InputContainerView.swift */,
 				04D5EDDF26A7C8D100BA92C9 /* CustomButton.swift */,
 				04D5EE4A26AE7D6D00BA92C9 /* CustomInputAccessoryView.swift */,
+				04C896F126B408D000E42C5F /* MessageCell.swift */,
 				04D5EE1226AAD5CB00BA92C9 /* UserCell.swift */,
 				04D5EDDD26A7548D00BA92C9 /* CustomTextField.swift */,
 			);
@@ -152,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				04D5EE1426AB05FA00BA92C9 /* User.swift */,
+				04C896F326B4539E00E42C5F /* Message.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -330,18 +339,21 @@
 				048151D1269D357100EBFF50 /* AppDelegate.swift in Sources */,
 				048151ED269D36A100EBFF50 /* ConversationsController.swift in Sources */,
 				04D5EE0F26A8FF7000BA92C9 /* AuthService.swift in Sources */,
+				04C896F626B46DAD00E42C5F /* MessageViewModel.swift in Sources */,
 				04D5EDDC26A74AD500BA92C9 /* InputContainerView.swift in Sources */,
 				048151D3269D357100EBFF50 /* SceneDelegate.swift in Sources */,
 				04D5EE1926AB376C00BA92C9 /* NewMessageViewModel.swift in Sources */,
 				04D5EE1326AAD5CB00BA92C9 /* UserCell.swift in Sources */,
 				04D5EDE026A7C8D100BA92C9 /* CustomButton.swift in Sources */,
 				04D5EE1526AB05FA00BA92C9 /* User.swift in Sources */,
+				04C896F226B408D000E42C5F /* MessageCell.swift in Sources */,
 				048151F0269D460600EBFF50 /* LoginController.swift in Sources */,
 				048151F2269D461600EBFF50 /* SignUpController.swift in Sources */,
 				04D5EE0626A7EC4900BA92C9 /* LoginViewModel.swift in Sources */,
 				04D5EE0826A8014100BA92C9 /* SignUpViewModel.swift in Sources */,
 				04D5EE1B26AC0E3C00BA92C9 /* ChatController.swift in Sources */,
 				048151F4269D4BDE00EBFF50 /* Extensions.swift in Sources */,
+				04C896F426B4539E00E42C5F /* Message.swift in Sources */,
 				04D5EE1126AAC36800BA92C9 /* NewMessageController.swift in Sources */,
 				04D5EE4B26AE7D6E00BA92C9 /* CustomInputAccessoryView.swift in Sources */,
 			);
