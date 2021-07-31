@@ -15,6 +15,7 @@ class ChatController: UICollectionViewController {
     
     private let user: User
     private var messages = [Message]()
+    private var viewModel = NewMessageViewModel()
     private var isFromCurrentUser: Bool = false
     
     private lazy var customInputView: UIView = {
@@ -47,6 +48,8 @@ class ChatController: UICollectionViewController {
     override var canBecomeFirstResponder: Bool {
         return true
     }
+
+    
     
 //    MARK: - Helpers
     
@@ -82,10 +85,12 @@ extension ChatController: UICollectionViewDelegateFlowLayout {
 
 extension ChatController: CustomInputAcessoryDelegate {
     func inputView(_ inputView: CustomInputAccessoryView, wantsToSend message: String) {
-        inputView.messageInputTextView.text = nil
-        isFromCurrentUser.toggle()
-        let message = Message(text: message, isFromCurrentUser: isFromCurrentUser)
-        messages.append(message)
-        collectionView.reloadData()
+        viewModel.uploadMessage(message, to: user) { error in
+            if let error = error {
+                print("DEBUG, failed to upload message with error \(error.localizedDescription)")
+                return
+            }
+            inputView.clearMessageText()
+        }
     }
 }
