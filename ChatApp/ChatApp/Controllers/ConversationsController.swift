@@ -14,6 +14,8 @@ class ConversationsController: UIViewController {
 
     // MARK: - Properties
     private let tableView = UITableView()
+    private let viewModel = ConversationsViewModel()
+    private var conversations = [Conversation]()
     
     private let newMessageButton: UIButton = {
         let btn = UIButton(type: .system)
@@ -30,7 +32,13 @@ class ConversationsController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-       authenticateUser()
+        authenticateUser()
+        fetchConversations()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        configureNavBar(withTitle: "Messages", true)
     }
     
     // MARK: - Selectors
@@ -47,6 +55,15 @@ class ConversationsController: UIViewController {
         present(nav, animated: true, completion: nil)
     }
     // MARK: - API
+    
+    func fetchConversations(){
+        viewModel.fetchConversations { conversation in
+            DispatchQueue.main.async {
+                self.conversations = conversation
+                self.tableView.reloadData()
+            }
+        }
+    }
     
     func authenticateUser() {
         if Auth.auth().currentUser?.uid == nil {
@@ -77,7 +94,6 @@ class ConversationsController: UIViewController {
     
     func configureUI(){
         view.backgroundColor = .white
-        configureNavBar(withTitle: "Messages", true)
         configureTableView()
         let navImage = UIImage(systemName: "person.circle.fill")
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: navImage, style: .plain, target: self, action: #selector(showProfile))
@@ -91,7 +107,7 @@ class ConversationsController: UIViewController {
     func configureTableView(){
         tableView.backgroundColor = .white
         tableView.rowHeight = 80
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.register(ConversationCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.tableFooterView = UIView()
         tableView.delegate = self
         tableView.dataSource = self
@@ -105,12 +121,12 @@ class ConversationsController: UIViewController {
 
 extension ConversationsController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return conversations.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
-        cell.textLabel?.text = "Testing"
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! ConversationCell
+        cell.conversation = conversations[indexPath.row]
         return cell
     }
 }
@@ -120,6 +136,9 @@ extension ConversationsController: UITableViewDataSource {
 extension ConversationsController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let user = conversations[indexPath.row].user
+        let controller = ChatController(user: user)
+        navigationController?.pushViewController(controller, animated: true)
     }
 }
 

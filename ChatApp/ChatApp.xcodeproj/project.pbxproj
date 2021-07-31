@@ -22,6 +22,7 @@
 		04C896FA26B5484000E42C5F /* ChatControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C896F926B5484000E42C5F /* ChatControllerViewModel.swift */; };
 		04C896FC26B5593A00E42C5F /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C896FB26B5593A00E42C5F /* Conversation.swift */; };
 		04C896FE26B559B300E42C5F /* ConversationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C896FD26B559B300E42C5F /* ConversationsViewModel.swift */; };
+		04C8970026B5AAD800E42C5F /* ConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C896FF26B5AAD800E42C5F /* ConversationCell.swift */; };
 		04D5EDDC26A74AD500BA92C9 /* InputContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D5EDDB26A74AD500BA92C9 /* InputContainerView.swift */; };
 		04D5EDDE26A7548D00BA92C9 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D5EDDD26A7548D00BA92C9 /* CustomTextField.swift */; };
 		04D5EDE026A7C8D100BA92C9 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D5EDDF26A7C8D100BA92C9 /* CustomButton.swift */; };
@@ -57,6 +58,7 @@
 		04C896F926B5484000E42C5F /* ChatControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatControllerViewModel.swift; sourceTree = "<group>"; };
 		04C896FB26B5593A00E42C5F /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		04C896FD26B559B300E42C5F /* ConversationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsViewModel.swift; sourceTree = "<group>"; };
+		04C896FF26B5AAD800E42C5F /* ConversationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCell.swift; sourceTree = "<group>"; };
 		04D5EDDB26A74AD500BA92C9 /* InputContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputContainerView.swift; sourceTree = "<group>"; };
 		04D5EDDD26A7548D00BA92C9 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		04D5EDDF26A7C8D100BA92C9 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				04D5EDDB26A74AD500BA92C9 /* InputContainerView.swift */,
 				04D5EDDF26A7C8D100BA92C9 /* CustomButton.swift */,
 				04D5EE4A26AE7D6D00BA92C9 /* CustomInputAccessoryView.swift */,
+				04C896FF26B5AAD800E42C5F /* ConversationCell.swift */,
 				04C896F126B408D000E42C5F /* MessageCell.swift */,
 				04D5EE1226AAD5CB00BA92C9 /* UserCell.swift */,
 				04D5EDDD26A7548D00BA92C9 /* CustomTextField.swift */,
@@ -357,6 +360,7 @@
 				04D5EDDC26A74AD500BA92C9 /* InputContainerView.swift in Sources */,
 				048151D3269D357100EBFF50 /* SceneDelegate.swift in Sources */,
 				04D5EE1926AB376C00BA92C9 /* NewMessageViewModel.swift in Sources */,
+				04C8970026B5AAD800E42C5F /* ConversationCell.swift in Sources */,
 				04D5EE1326AAD5CB00BA92C9 /* UserCell.swift in Sources */,
 				04C896FE26B559B300E42C5F /* ConversationsViewModel.swift in Sources */,
 				04C896FA26B5484000E42C5F /* ChatControllerViewModel.swift in Sources */,
