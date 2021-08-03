@@ -4,8 +4,9 @@
 //
 //  Created by mac on 13/07/2021.
 //
-
+import Firebase
 import UIKit
+import JGProgressHUD
 
 class LoginController: UIViewController {
     
@@ -40,8 +41,8 @@ class LoginController: UIViewController {
     
     private let loginBtn: UIButton = {
         let btn = UIButton(type: .system)
-        btn.setTitle("Login", for: .normal)
-        btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20 )
+        btn.setTitle("Log In", for: .normal)
+        btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18 )
         btn.setTitleColor(.white, for: .normal)
         btn.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
         btn.layer.cornerRadius = 5
@@ -71,7 +72,20 @@ class LoginController: UIViewController {
     // MARK: - Selectors
     
     @objc func handleLogin() {
-        print("warris going on")
+        guard let email = emailTextfield.text else { return }
+        guard let password = passwordTextfield.text else { return }
+        
+        showLoader(true, withText: "Logging In")
+        
+        AuthService.shared.logUserIn(withEmail: email, password) { result, error in
+            if let error = error {
+                print("DEBUG: failed to login with error: \(error.localizedDescription)")
+                self.showLoader(false)
+                return
+            }
+            self.showLoader(false)
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     @objc func textDidChange(_ sender: UITextField) {
@@ -89,7 +103,7 @@ class LoginController: UIViewController {
     }
     
     // MARK: - Helpers
-   
+    
     func configureUI() {
         navigationController?.navigationBar.isHidden = true
         navigationController?.navigationBar.barStyle = .black

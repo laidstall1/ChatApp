@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 protocol AuthenticationControllerProtocol {
     func checkFormStatus()
@@ -14,13 +15,16 @@ protocol AuthenticationControllerProtocol {
 class SignUpController: UIViewController {
     
     private var viewModel = SignUpViewModel()
+    private var profileImage: UIImage?
     
     // MARK: - Properties
+    
     private let uploadPhotoButton: UIButton  = {
         let uploadBtn = UIButton(type: .system)
         uploadBtn.setImage(UIImage(named: "plus_photo"), for: .normal)
         uploadBtn.tintColor = .white
         uploadBtn.clipsToBounds = true
+        uploadBtn.imageView?.contentMode = .scaleAspectFill
         uploadBtn.addTarget(self, action: #selector(handleSelectPhoto), for: .touchUpInside)
         return uploadBtn
     }()
@@ -39,20 +43,16 @@ class SignUpController: UIViewController {
     
     private lazy var passwordContainerView: InputContainerView = InputContainerView(textfield: passwordTextField, image: #imageLiteral(resourceName: "ic_lock_outline_white_2x"))
     
-    private let passwordTextField: CustomTextField = CustomTextField(placeholder: "Password")
-    
-//    private let signUpButton: CustomButton = {
-//        let btn = CustomButton(type: .system, title: "Sign Up")
-//        btn.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
-//        btn.isEnabled = false
-//        btn.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
-//        return btn
-//    }()
+    private let passwordTextField: CustomTextField = {
+        let tf = CustomTextField(placeholder: "Password")
+        tf.isSecureTextEntry = true
+        return tf
+    }()
     
     private let signUpButton: UIButton = {
         let btn = UIButton(type: .system)
         btn.setTitle("Sign Up", for: .normal)
-        btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20 )
+        btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18 )
         btn.setTitleColor(.white, for: .normal)
         btn.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
         btn.layer.cornerRadius = 5
@@ -81,14 +81,47 @@ class SignUpController: UIViewController {
 
     // MARK: - Selectors
     
+    @objc func keyboardWillShow() {
+        if view.frame.origin.y == 0 {
+            view.frame.origin.y -= 88
+        }
+    }
+    
+    @objc func keyboardWillHide() {
+        if view.frame.origin.y != 0 {
+            view.frame.origin.y = 0
+        }
+    }
+    
     @objc func handleSelectPhoto() {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
+        imagePickerController.allowsEditing = true
         present(imagePickerController, animated: true)
     }
     
     @objc func handleSignUp() {
+        guard let email = emailTextfield.text, !email.isEmpty else { return }
+        guard let password = passwordTextField.text, !password.isEmpty else { return }
+        guard let username = usernameTextField.text?.lowercased(), !username.isEmpty else { return }
+        guard let fullName = fullNameTextfield.text, !fullName.isEmpty else { return }
+        guard let profileImage = profileImage else { return }
         
+        let credentials = RegistrationCredentials(email: email, password: password,
+                                                  fullName: fullName, username: username,
+                                                  profileImage: profileImage)
+        
+        showLoader(true, withText: "Signing you up")
+        
+        AuthService.shared.createUser(with: credentials) { error in
+            if let error = error {
+                print("DEBUG: Failed to upload user data with \(error.localizedDescription)")
+                self.showLoader(false)
+                return
+            }
+            self.showLoader(false)
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     @objc func textDidChange(_ sender: UITextField) {
@@ -110,6 +143,7 @@ class SignUpController: UIViewController {
     @objc func handleShowLogin() {
         navigationController?.popToRootViewController(animated: true)
     }
+    
     // MARK: - Helpers
         
     fileprivate func configureNotificationObservers() {
@@ -117,6 +151,9 @@ class SignUpController: UIViewController {
         fullNameTextfield.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
         usernameTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     func configureUI(){
@@ -147,6 +184,7 @@ class SignUpController: UIViewController {
 extension SignUpController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[.originalImage] as? UIImage
+        profileImage = image
         uploadPhotoButton.setImage(image?.withRenderingMode(.alwaysOriginal), for: .normal)
         uploadPhotoButton.layer.borderWidth = 3.0
         uploadPhotoButton.layer.borderColor = UIColor(white: 1, alpha: 0.7).cgColor
