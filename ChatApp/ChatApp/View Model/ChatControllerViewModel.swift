@@ -14,6 +14,7 @@ struct ChatControllerViewModel {
         guard let currentUid  = Auth.auth().currentUser?.uid else { return }
         let data = [ "text" : message,
                      "fromId" : currentUid,
+                     "toId" : user.uid,
                     "timestamp" : Timestamp(date: Date())
                 ] as [String: Any]
         

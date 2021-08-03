@@ -63,7 +63,7 @@ class ConversationCell: UITableViewCell {
         stack.centerY(inView: profileImageView, leftAnchor: profileImageView.rightAnchor, paddingLeft: 12)
         
         addSubview(timestampLabel)
-        timestampLabel.anchor(top: stack.topAnchor, left: stack.rightAnchor, right: rightAnchor, paddingRight: 12)
+        timestampLabel.anchor(top: stack.topAnchor, right: rightAnchor, paddingRight: 12)
     }
     
     required init?(coder: NSCoder) {
@@ -73,11 +73,11 @@ class ConversationCell: UITableViewCell {
     //  MARK: - Helpers
     
     func configure() {
+        let viewModel = ConversationViewModel(conversation: conversation!)
         usernameLabel.text = conversation?.user.username
         messageLabel.text = conversation?.message.text
-//        timestampLabel.text = conversation?.message.timestamp
-//        guard let imageUrl = URL(string: conversation!.user.profileImageURL) else { return }
-//        profileImageView.sd_setImage(with: imageUrl)
+        timestampLabel.text = viewModel.timestamp
+        profileImageView.sd_setImage(with: viewModel.profileImageUrl)
     }
 }
 

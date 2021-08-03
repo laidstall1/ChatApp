@@ -14,7 +14,7 @@ class ConversationsController: UIViewController {
 
     // MARK: - Properties
     private let tableView = UITableView()
-    private let viewModel = ConversationsViewModel()
+    private let viewModel = ConversationsServiceViewModel()
     private var conversations = [Conversation]()
     
     private let newMessageButton: UIButton = {
@@ -33,18 +33,21 @@ class ConversationsController: UIViewController {
         super.viewDidLoad()
         configureUI()
         authenticateUser()
-        fetchConversations()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         configureNavBar(withTitle: "Messages", true)
+        fetchConversations()
     }
     
     // MARK: - Selectors
     
     @objc func showProfile(){
-        logout()
+        let controller = ProfileController()
+        let nav = UINavigationController(rootViewController: controller)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true, completion: nil)
     }
     
     @objc func showNewMessage() {
